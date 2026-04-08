@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudScanner</title>
+<meta name="description" content="CloudScanner — Confronto Costi Cloud. Strumento gratuito per consulenti IT.">
+<link rel="canonical" href="https://marcobacciwork.github.io/CloudScanner/dashboard.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--white:#fff;--bg:#f7f8fa;--bg2:#eef0f4;--border:#e2e6ed;--border2:#cdd3dc;--text:#1a1f2e;--text2:#5a6275;--text3:#9ca3b0;--blue:#2563eb;--blue-light:#eff4ff;--blue-mid:#dbeafe;--green:#16a34a;--green-light:#f0fdf4;--green-mid:#bbf7d0;--red:#dc2626;--amber:#d97706;--amber-light:#fffbeb;--purple:#7c3aed;--purple-light:#f5f3ff;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,.07),0 4px 16px rgba(0,0,0,.04);--font:'DM Sans',sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;-webkit-font-smoothing:antialiased}
+.site-header{background:var(--white);border-bottom:1px solid var(--border);padding:0 28px;height:64px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.logo-icon{width:36px;height:36px;background:var(--blue);border-radius:9px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;flex-shrink:0}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:-.3px}
+.logo-sub{font-size:11px;color:var(--text3)}
+.nav-links{margin-left:auto;display:flex;gap:4px}
+.nav-link{font-size:13px;font-weight:600;color:var(--text2);padding:7px 14px;border-radius:var(--radius-sm);text-decoration:none;transition:background .15s,color .15s}
+.nav-link:hover{background:var(--bg2);color:var(--text)}
+.nav-link.active{background:var(--blue-light);color:var(--blue)}
+.nav-link.partner-link{background:var(--green-light);color:var(--green);border:1px solid var(--green-mid)}
+.hero{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 55%,#3b82f6 100%);padding:60px 32px 52px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero::after{content:'';position:absolute;bottom:-80px;left:25%;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15)}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80}
+.hero h1{font-size:38px;font-weight:700;color:white;letter-spacing:-.8px;line-height:1.18;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:#93c5fd}
+.hero-desc{font-size:16px;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:28px;max-width:560px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:36px}
+.btn-primary{background:white;color:var(--blue);font-family:var(--font);font-size:14px;font-weight:700;padding:12px 22px;border-radius:var(--radius-sm);border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:box-shadow .2s,transform .15s;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.btn-primary:hover{box-shadow:0 6px 20px rgba(0,0,0,.2);transform:translateY(-1px)}
+.btn-secondary{background:rgba(255,255,255,.12);color:white;font-family:var(--font);font-size:14px;font-weight:600;padding:12px 22px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.25);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:background .2s}
+.btn-secondary:hover{background:rgba(255,255,255,.2)}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,.15)}
+.hstat-num{font-size:24px;font-weight:700;color:white;letter-spacing:-.5px}
+.hstat-label{font-size:12px;color:rgba(255,255,255,.6)}
+.features{background:var(--white);border-bottom:1px solid var(--border);padding:36px 32px}
+.features-inner{max-width:960px;margin:0 auto}
+.features-title{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);margin-bottom:18px}
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.feat-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;transition:border-color .2s}
+.feat-card:hover{border-color:var(--blue)}
+.feat-icon{font-size:22px;margin-bottom:7px}
+.feat-title{font-size:13px;font-weight:700;margin-bottom:3px}
+.feat-desc{font-size:12px;color:var(--text2);line-height:1.5}
+.app-shell{display:grid;grid-template-columns:298px 1fr}
+.sidebar{background:var(--white);border-right:1px solid var(--border);padding:20px 16px 32px;display:flex;flex-direction:column;gap:20px;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+.ctrl-block{display:flex;flex-direction:column;gap:8px}
+.block-title{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding-bottom:6px;border-bottom:1.5px solid var(--border)}
+.field-label{font-size:13px;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:6px}
+.tip-wrap{position:relative;display:inline-flex}
+.tip-btn{width:16px;height:16px;border-radius:50%;background:var(--bg2);border:1px solid var(--border2);color:var(--text3);font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:help;transition:background .15s;flex-shrink:0}
+.tip-btn:hover{background:var(--blue);color:white;border-color:var(--blue)}
+.tip-popup{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);width:220px;background:var(--text);color:#e8ecf2;border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;font-weight:400;line-height:1.6;z-index:999;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.tip-popup::before{content:'';position:absolute;right:100%;top:50%;transform:translateY(-50%);border:6px solid transparent;border-right-color:var(--text)}
+.tip-popup strong{color:white;display:block;margin-bottom:4px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.tip-popup em{display:block;margin-top:6px;color:#6ee7b7;font-style:normal;font-size:11px}
+.tip-wrap:hover .tip-popup{opacity:1}
+select{width:100%;background:var(--white);border:1.5px solid var(--border2);color:var(--text);font-family:var(--font);font-size:14px;font-weight:500;padding:10px 32px 10px 12px;border-radius:var(--radius-sm);cursor:pointer;outline:none;transition:border-color .2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath fill='%239ca3b0' d='M0 0l6 7 6-7z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.wl-hint{font-size:12px;color:var(--text2);background:var(--bg);border-radius:var(--radius-sm);padding:8px 10px;line-height:1.5;border-left:3px solid var(--blue)}
+.slider-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius);padding:14px}
+.slider-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.slider-name{font-size:13px;font-weight:600;color:var(--text2)}
+.slider-val-display{font-size:26px;font-weight:700;color:var(--blue);line-height:1}
+.slider-val-display span{font-size:14px;font-weight:500;color:var(--text3)}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;background:var(--border2);border-radius:4px;outline:none;cursor:pointer;margin-bottom:5px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--blue);box-shadow:0 2px 6px rgba(37,99,235,.35);cursor:pointer;border:3px solid white}
+.slider-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--text3)}
+.toggle-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius);padding:11px 13px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;transition:border-color .2s,background .2s}
+.toggle-card:hover{border-color:var(--green)}
+.toggle-card.on{border-color:var(--green);background:var(--green-light)}
+.toggle-card input{display:none}
+.toggle-switch{position:relative;width:36px;height:20px;flex-shrink:0;margin-top:2px}
+.toggle-track{width:36px;height:20px;border-radius:10px;background:var(--border2);display:block}
+.toggle-card.on .toggle-track{background:var(--green)}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:white;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:left .2s}
+.toggle-card.on .toggle-thumb{left:18px}
+.toggle-title{font-size:13px;font-weight:600}
+.toggle-sub{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.4}
+.rank-list{display:flex;flex-direction:column;gap:2px}
+.rank-item{display:flex;align-items:center;gap:8px;padding:5px 7px;border-radius:var(--radius-sm);transition:background .15s,opacity .3s}
+.rank-item:hover{background:var(--bg)}
+.rank-item.dim{opacity:.22}
+.rank-num{width:20px;height:20px;border-radius:50%;background:var(--bg2);color:var(--text3);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rank-num.first{background:var(--green-light);color:var(--green);border:1.5px solid var(--green-mid)}
+.rank-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.rank-name{flex:1;font-size:12px;font-weight:600}
+.rank-price{font-size:12px;font-weight:700;color:var(--text2)}
+.rank-price.best{color:var(--green)}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.stat-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 10px}
+.stat-label{font-size:11px;color:var(--text3);font-weight:500;margin-bottom:2px}
+.stat-value{font-size:17px;font-weight:700;color:var(--text)}
+.stat-value.green{color:var(--green)}
+.stat-value.red{color:var(--red)}
+.stat-value.amber{color:var(--amber)}
+.stat-sub{font-size:10px;color:var(--text3);margin-top:1px}
+.main-content{overflow-y:auto;padding:22px 24px 40px;display:flex;flex-direction:column;gap:20px;background:var(--bg)}
+.section-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:11px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:600;background:var(--blue-light);color:var(--blue);padding:2px 9px;border-radius:20px}
+.chart-box{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:18px 20px;box-shadow:var(--shadow)}
+.chart-legend{display:flex;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+.cl-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
+.cl-dot{width:10px;height:10px;border-radius:2px}
+.chart-wrap{height:205px;position:relative}
+.provider-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.prov-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:13px 13px 11px;transition:box-shadow .2s,opacity .3s;position:relative;overflow:hidden;animation:fadeUp .3s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.prov-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.prov-card.dim{opacity:.22;pointer-events:none}
+.prov-card.best-card{border-color:var(--green);background:var(--green-light)}
+.pc-colorbar{position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0}
+.pc-top{display:flex;align-items:center;margin:7px 0 5px}
+.pc-name{font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+.pc-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+.pc-badges{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:7px}
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap}
+.badge-green{background:var(--green-light);color:var(--green);border:1px solid var(--green-mid)}
+.badge-egress{background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-mid)}
+.badge-rank{background:var(--bg2);color:var(--text2)}
+.badge-rank.b1{background:var(--green-mid);color:var(--green)}
+.pc-tco-label{font-size:10px;color:var(--text3);font-weight:500}
+.pc-tco{font-size:19px;font-weight:700;color:var(--text);line-height:1.2}
+.pc-tco.best{color:var(--green)}
+.pc-margin-label{font-size:10px;color:var(--text3);margin-top:5px}
+.pc-margin{font-size:14px;font-weight:700;color:var(--blue)}
+.pc-margin.zero{color:var(--text3);font-weight:400;font-size:11px;font-style:italic}
+.pc-desc{font-size:11px;color:var(--text2);line-height:1.45;margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.lockin-row{display:flex;align-items:center;gap:5px;margin-top:4px;font-size:11px;color:var(--text3)}
+.table-box{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+.table-note{padding:11px 16px;font-size:12px;color:var(--text2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.table-note strong{color:var(--text)}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+thead th{background:var(--bg);text-align:left;font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;padding:9px 13px;border-bottom:1.5px solid var(--border)}
+thead th.num{text-align:right}
+thead th.highlight{color:var(--blue)}
+.th-inner{display:inline-flex;align-items:center;gap:4px;position:relative;cursor:help}
+.th-tip{position:absolute;top:calc(100% + 6px);left:0;width:185px;background:var(--text);color:#e8ecf2;border-radius:var(--radius-sm);padding:9px 11px;font-size:11px;font-weight:400;line-height:1.55;z-index:400;pointer-events:none;opacity:0;transition:opacity .15s;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.18);text-transform:none;letter-spacing:0}
+.th-tip strong{color:white;display:block;margin-bottom:2px;font-size:10px;text-transform:uppercase;letter-spacing:.04em}
+.th-inner:hover .th-tip{opacity:1}
+.th-i{font-size:8px;font-weight:700;color:var(--text3);width:13px;height:13px;border-radius:50%;background:var(--bg2);border:1px solid var(--border2);display:inline-flex;align-items:center;justify-content:center}
+.th-i:hover{background:var(--blue);color:white;border-color:var(--blue)}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--bg)}
+tbody tr.dim-row{opacity:.18;pointer-events:none}
+tbody tr.best-row{background:var(--green-light)}
+tbody tr.best-row:hover{background:#dcfce7}
+td{padding:10px 13px;font-size:13px;color:var(--text);vertical-align:middle}
+td.num{text-align:right;font-weight:600;color:var(--text2)}
+td.tco{text-align:right;font-size:14px;font-weight:700;color:var(--text)}
+td.margin-td{text-align:right;font-size:14px;font-weight:700;color:var(--blue)}
+td.egress-good{text-align:right;font-weight:600;color:var(--green)}
+td.egress-bad{text-align:right;font-weight:600;color:var(--red)}
+.pname-row{display:flex;align-items:center;gap:9px}
+.pname-color{width:4px;height:28px;border-radius:3px;flex-shrink:0}
+.pname-main{font-size:13px;font-weight:700}
+.pname-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.table-footer{padding:8px 13px;background:var(--bg);border-top:1px solid var(--border);font-size:11px;color:var(--text3);display:flex;gap:14px;flex-wrap:wrap}
+.wb{font-family:var(--font);font-size:10px;font-weight:700;letter-spacing:.1em;padding:2px 10px;border:1px solid;text-transform:uppercase;border-radius:20px}
+.wb-s{color:var(--blue);border-color:var(--blue);background:var(--blue-light)}
+.wb-m{color:var(--amber);border-color:var(--amber);background:var(--amber-light)}
+.wb-e{color:var(--purple);border-color:var(--purple);background:var(--purple-light)}
+.data-strip{background:var(--amber-light);border:1px solid #fde68a;border-radius:var(--radius);padding:10px 14px;font-size:12px;color:#92400e;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.data-strip strong{color:#78350f}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-icon">☁</div>
+  <div>
+    <div class="logo-text">CloudScanner</div>
+    <div class="logo-sub">Strumento gratuito per partner e consulenti cloud</div>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="dashboard.html" class="nav-link active">📊 Confronto Costi</a>
+    <a href="partnerships.html" class="nav-link partner-link">🤝 Programmi Partnership</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>Confronto cloud provider · Gratuito</div>
+    <h1>Trova il cloud provider<br><em>giusto per ogni cliente</em></h1>
+    <p class="hero-desc">Confronta in pochi secondi i costi mensili di 8 cloud provider. Calcola il tuo margine di rivendita e scopri subito quale provider conviene davvero al tuo cliente.</p>
+    <div class="hero-cta">
+      <a href="#app" class="btn-primary">📊 Inizia il confronto →</a>
+      <a href="partnerships.html" class="btn-secondary">🤝 Vedi i programmi partner</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">8</div><div class="hstat-label">Cloud provider</div></div>
+      <div class="hstat"><div class="hstat-num">3</div><div class="hstat-label">Tipologie azienda</div></div>
+      <div class="hstat"><div class="hstat-num">30%</div><div class="hstat-label">Margine max calcolabile</div></div>
+      <div class="hstat"><div class="hstat-num">100%</div><div class="hstat-label">Gratuito</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-inner">
+    <div class="features-title">Cosa puoi fare con questo strumento</div>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon">💰</div><div class="feat-title">Confronta i costi</div><div class="feat-desc">Server, archiviazione e trasferimento dati di tutti i provider in un colpo solo, con grafico e tabella.</div></div>
+      <div class="feat-card"><div class="feat-icon">📈</div><div class="feat-title">Calcola il tuo margine</div><div class="feat-desc">Imposta la tua percentuale di rivendita e vedi subito quanto guadagni mese per mese per ogni provider.</div></div>
+      <div class="feat-card"><div class="feat-icon">♻️</div><div class="feat-title">Filtra per sostenibilità</div><div class="feat-desc">Mostra solo i provider con energia 100% rinnovabile, per i clienti con requisiti ESG o ambientali.</div></div>
+      <div class="feat-card"><div class="feat-icon">🤝</div><div class="feat-title">Esplora le partnership</div><div class="feat-desc">Scopri i livelli ufficiali di ogni programma partner con requisiti e benefici reali, verificati sulle fonti ufficiali.</div></div>
+    </div>
+  </div>
+</section>
+
+<div id="app" class="app-shell">
+  <aside class="sidebar">
+    <div class="ctrl-block">
+      <div class="block-title">La tua azienda</div>
+      <div class="field-label">Tipo di cliente <div class="tip-wrap"><span class="tip-btn">?</span><div class="tip-popup"><strong>Dimensione azienda</strong>I costi cambiano in base alla dimensione. Scegli la fascia più vicina al tuo cliente.<em>Startup ~€400/mese · Enterprise ~€8.000/mese</em></div></div></div>
+      <select id="workloadSel"><option value="startup">🚀 Startup o piccolo progetto</option><option value="sme">🏢 Azienda media (20–250 persone)</option><option value="enterprise">🏛 Grande azienda (250+ persone)</option></select>
+      <div class="wl-hint" id="wlHint"></div>
+    </div>
+    <div class="ctrl-block">
+      <div class="block-title">Il tuo guadagno</div>
+      <div class="field-label">Margine di rivendita <div class="tip-wrap"><span class="tip-btn">?</span><div class="tip-popup"><strong>Alliance Margin %</strong>La tua percentuale come partner o reseller. Calcolata sul costo mensile totale di ogni provider.<em>Es. €1.000 × 15% = €150 guadagno tuo</em></div></div></div>
+      <div class="slider-card">
+        <div class="slider-top"><span class="slider-name">Percentuale</span><div class="slider-val-display" id="marginNum">0<span>%</span></div></div>
+        <input type="range" id="marginSlider" min="0" max="30" value="0" step="1">
+        <div class="slider-scale"><span>Nessun margine</span><span>Massimo 30%</span></div>
+      </div>
+    </div>
+    <div class="ctrl-block">
+      <div class="block-title">Sostenibilità</div>
+      <div class="toggle-card" id="greenToggle"><div class="toggle-switch"><input type="checkbox" id="greenCb"><span class="toggle-track"></span><span class="toggle-thumb"></span></div><div><div class="toggle-title">♻ Solo provider ecosostenibili</div><div class="toggle-sub">Filtra chi usa energia 100% rinnovabile</div></div></div>
+    </div>
+    <div class="ctrl-block">
+      <div class="block-title">Classifica per costo</div>
+      <div class="rank-list" id="rankList"></div>
+    </div>
+    <div class="ctrl-block">
+      <div class="block-title">Numeri chiave</div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-label">Meno costoso</div><div class="stat-value green" id="sBest">—</div><div class="stat-sub" id="sBestName"></div></div>
+        <div class="stat-card"><div class="stat-label">Più costoso</div><div class="stat-value red" id="sWorst">—</div></div>
+        <div class="stat-card"><div class="stat-label">Risparmio max</div><div class="stat-value amber" id="sSaving">—</div></div>
+        <div class="stat-card"><div class="stat-label">Tuo guadagno medio</div><div class="stat-value green" id="sMargin">€0</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="data-strip">⚠️ <span><strong>Nota sui dati:</strong> I costi mostrati sono stime basate sui listini pubblici ufficiali (verificati marzo 2026) e variano per configurazione, region e volume. Prima di presentare un'offerta, verifica sempre i prezzi sui calcolatori ufficiali dei provider.</span></div>
+
+    <div>
+      <div class="section-title">Costo mensile per provider <span class="pill">Grafico</span> <span id="wbDisplay"></span></div>
+      <div class="chart-box">
+        <div class="chart-legend"><div class="cl-item"><div class="cl-dot" style="background:#3b82f6"></div>Server</div><div class="cl-item"><div class="cl-dot" style="background:#93c5fd"></div>Archiviazione</div><div class="cl-item"><div class="cl-dot" style="background:#dbeafe"></div>Trasf. dati</div></div>
+        <div class="chart-wrap"><canvas id="myChart"></canvas></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Schede provider <span class="pill" id="modeLabel">Startup</span></div>
+      <div class="provider-grid" id="providerGrid"></div>
+    </div>
+
+    <div>
+      <div class="section-title">Tabella completa <span class="pill">Tutti i dettagli</span></div>
+      <div class="table-box">
+        <div class="table-note">Tutti i costi sono <strong>mensili, in euro (€)</strong>. Passa il mouse sulle intestazioni per sapere cosa significano.</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:155px">Provider</th>
+              <th class="num" style="width:110px"><div class="th-inner">Server <span class="th-i">i</span><div class="th-tip"><strong>Costo Server</strong>Le macchine virtuali che eseguono le applicazioni. Di solito la voce più grande della bolletta.</div></div></th>
+              <th class="num" style="width:120px"><div class="th-inner">Archiviazione <span class="th-i">i</span><div class="th-tip"><strong>Archiviazione (Storage)</strong>Il costo per salvare file, database e backup. Cresce con i dati.</div></div></th>
+              <th class="num" style="width:105px"><div class="th-inner">Trasf. dati <span class="th-i">i</span><div class="th-tip"><strong>Trasferimento Dati</strong>Il costo per inviare dati dal cloud a internet. Alcuni provider lo fanno pagare molto, altri quasi nulla.</div></div></th>
+              <th class="num" style="width:110px"><div class="th-inner">Totale/mese <span class="th-i">i</span><div class="th-tip"><strong>Costo Totale Mensile</strong>La somma di tutti i costi. Quello che il cliente paga ogni mese.</div></div></th>
+              <th style="width:85px"><div class="th-inner">Vincolo <span class="th-i">i</span><div class="th-tip"><strong>Difficoltà a cambiare</strong>🔴 Molto difficile. 🟡 Fattibile con lavoro. 🟢 Facile — standard aperti.</div></div></th>
+              <th class="num highlight" style="width:110px"><div class="th-inner">Tuo guadagno <span class="th-i" style="background:#eff4ff;color:var(--blue);border-color:var(--blue)">€</span><div class="th-tip"><strong>Il tuo guadagno mensile</strong>Totale × la % del cursore. Si aggiorna in tempo reale.</div></div></th>
+            </tr>
+          </thead>
+          <tbody id="tBody"></tbody>
+        </table>
+        <div class="table-footer"><span>♻ = Energia 100% rinnovabile</span><span>⚡ = Trasferimento dati quasi gratuito</span><span>🔴 Difficile uscire · 🟡 Medio · 🟢 Facile</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const WL_HINTS={startup:'Piccolo team, pochi server, qualche TB di dati. Ideale per app in lancio.',sme:'Più applicazioni, database importanti, necessità di affidabilità e supporto dedicato.',enterprise:'Alta disponibilità, multi-region, compliance, molte applicazioni critiche.'};
+const WL_LABELS={startup:'Startup',sme:'Azienda media',enterprise:'Grande azienda'};
+const WB_CLS={startup:'wb-s',sme:'wb-m',enterprise:'wb-e'};
+const PROVIDERS=[
+  {id:'aws',name:'AWS',full:'Amazon Web Services',color:'#FF9900',green:false,lockIn:'🔴',desc:'Il più grande cloud al mondo. Ottimo per chi vuole tutto sotto un unico tetto, ma i costi di uscita dati sono tra i più alti.',costs:{startup:{compute:420,storage:85,egress:120},sme:{compute:1850,storage:310,egress:480},enterprise:{compute:7200,storage:980,egress:1650}}},
+  {id:'azure',name:'Azure',full:'Microsoft Azure',color:'#0078D4',green:true,lockIn:'🔴',desc:'Scelta naturale per chi usa già Office 365 o prodotti Microsoft. Integrazione eccellente con l\'ecosistema Windows.',costs:{startup:{compute:395,storage:90,egress:110},sme:{compute:1780,storage:340,egress:450},enterprise:{compute:6900,storage:1050,egress:1500}}},
+  {id:'gcp',name:'Google Cloud',full:'Google Cloud Platform',color:'#4285F4',green:true,lockIn:'🟡',desc:'Eccellente per analisi dati e intelligenza artificiale. La rete globale di Google garantisce velocità elevate ovunque.',costs:{startup:{compute:360,storage:78,egress:95},sme:{compute:1620,storage:290,egress:390},enterprise:{compute:6200,storage:890,egress:1320}}},
+  {id:'oci',name:'Oracle Cloud',full:'Oracle Cloud Infrastructure',color:'#C74634',green:false,lockIn:'🟡',desc:'Ottimo rapporto qualità-prezzo con trasferimento dati quasi gratuito. Ideale per chi usa database Oracle.',costs:{startup:{compute:290,storage:65,egress:18},sme:{compute:1280,storage:240,egress:72},enterprise:{compute:5100,storage:740,egress:280}}},
+  {id:'ibm',name:'IBM Cloud',full:'IBM Cloud',color:'#0F62FE',green:true,lockIn:'🔴',desc:'Specializzato in settore bancario, assicurativo e manifatturiero. Forte focus su sicurezza e conformità normativa.',costs:{startup:{compute:480,storage:105,egress:140},sme:{compute:2100,storage:420,egress:560},enterprise:{compute:8400,storage:1280,egress:1900}}},
+  {id:'alibaba',name:'Alibaba',full:'Alibaba Cloud',color:'#FF6A00',green:false,lockIn:'🟡',desc:'Il provider dominante in Asia. Ideale per clienti che operano o vogliono espandersi in Cina e nei mercati APAC.',costs:{startup:{compute:310,storage:72,egress:95},sme:{compute:1380,storage:265,egress:380},enterprise:{compute:5600,storage:820,egress:1250}}},
+  {id:'do',name:'DigitalOcean',full:'DigitalOcean',color:'#0080FF',green:true,lockIn:'🟢',desc:'Semplicissimo da usare, prezzi chiari e trasferimento dati quasi gratuito. Perfetto per startup e piccole aziende tech.',costs:{startup:{compute:240,storage:58,egress:12},sme:{compute:980,storage:195,egress:48},enterprise:{compute:3800,storage:580,egress:160}}},
+  {id:'ovh',name:'OVHcloud',full:'OVHcloud',color:'#123F6D',green:true,lockIn:'🟢',desc:'Il più grande provider europeo. Dati in Europa, conformità GDPR, prezzi molto competitivi. Zero vendor lock-in.',costs:{startup:{compute:210,storage:55,egress:22},sme:{compute:920,storage:185,egress:90},enterprise:{compute:3600,storage:540,egress:320}}}
+];
+const st={workload:'startup',margin:0,greenOnly:false};
+let chart=null;
+const getTCO=p=>{const c=p.costs[st.workload];return c.compute+c.storage+c.egress};
+const fmt=n=>n.toLocaleString('it-IT',{maximumFractionDigits:0});
+const vis=p=>st.greenOnly?p.green:true;
+const bySorted=()=>[...PROVIDERS].sort((a,b)=>getTCO(a)-getTCO(b));
+function buildChart(){
+  const ctx=document.getElementById('myChart').getContext('2d');
+  chart=new Chart(ctx,{type:'bar',data:{labels:PROVIDERS.map(p=>p.name),datasets:[{label:'Server',data:[],backgroundColor:'#3b82f6',borderRadius:3,borderSkipped:false},{label:'Archiviaz.',data:[],backgroundColor:'#93c5fd'},{label:'Trasf. dati',data:[],backgroundColor:'#dbeafe'}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:350,easing:'easeInOutQuart'},plugins:{legend:{display:false},tooltip:{backgroundColor:'#1a1f2e',titleColor:'#fff',bodyColor:'#9ca3b0',titleFont:{family:'DM Sans',size:12,weight:'700'},bodyFont:{family:'DM Sans',size:11},padding:11,cornerRadius:8,callbacks:{footer:items=>`\nTotale: €${fmt(items.reduce((s,i)=>s+i.raw,0))}/mese`}}},scales:{x:{stacked:true,grid:{display:false},ticks:{color:'#9ca3b0',font:{family:'DM Sans',size:11,weight:'600'}},border:{color:'#e2e6ed'}},y:{stacked:true,grid:{color:'#f0f2f5'},ticks:{color:'#9ca3b0',font:{family:'DM Sans',size:10},callback:v=>'€'+fmt(v)},border:{color:'#e2e6ed',dash:[3,3]}}}}});
+  updateChart();
+}
+function updateChart(){
+  if(!chart)return;
+  chart.data.datasets[0].data=PROVIDERS.map(p=>vis(p)?p.costs[st.workload].compute:0);
+  chart.data.datasets[0].backgroundColor=PROVIDERS.map(p=>vis(p)?'#3b82f6':'#e2e6ed');
+  chart.data.datasets[1].data=PROVIDERS.map(p=>vis(p)?p.costs[st.workload].storage:0);
+  chart.data.datasets[1].backgroundColor=PROVIDERS.map(p=>vis(p)?'#93c5fd':'#f0f2f5');
+  chart.data.datasets[2].data=PROVIDERS.map(p=>vis(p)?p.costs[st.workload].egress:0);
+  chart.data.datasets[2].backgroundColor=PROVIDERS.map(p=>vis(p)?'#dbeafe':'#f7f8fa');
+  chart.update();
+}
+function renderGrid(){
+  const s=bySorted();
+  document.getElementById('providerGrid').innerHTML=s.map((p,i)=>{
+    const tco=getTCO(p),mg=Math.round(tco*st.margin/100),isV=vis(p),isB=isV&&i===0,eg=p.costs[st.workload].egress;
+    return`<div class="prov-card ${!isV?'dim':''} ${isB?'best-card':''}" style="animation-delay:${i*25}ms"><div class="pc-colorbar" style="background:${p.color}"></div><div class="pc-top"><div class="pc-name"><div class="pc-dot" style="background:${p.color}"></div>${p.name}</div></div><div class="pc-badges"><span class="badge badge-rank ${isB?'b1':''}">#${i+1}${isB?' — Migliore':''}</span>${p.green?'<span class="badge badge-green">♻</span>':''}${eg<50?'<span class="badge badge-egress">⚡ Egress basso</span>':''}</div><div class="pc-tco-label">Costo mensile totale</div><div class="pc-tco ${isB?'best':''}">€${fmt(tco)}</div>${st.margin>0?`<div class="pc-margin-label">Tuo guadagno (${st.margin}%)</div><div class="pc-margin">€${fmt(mg)}/mese</div>`:`<div class="pc-margin zero">Sposta il cursore →</div>`}<div class="pc-desc">${p.desc}</div><div class="lockin-row">${p.lockIn} ${p.lockIn==='🔴'?'Difficile cambiare':p.lockIn==='🟡'?'Cambio fattibile':'Facile cambiare'}</div></div>`;
+  }).join('');
+}
+function renderTable(){
+  const s=bySorted();
+  document.getElementById('tBody').innerHTML=s.map((p,i)=>{
+    const c=p.costs[st.workload],tco=getTCO(p),mg=Math.round(tco*st.margin/100),isV=vis(p),isB=isV&&i===0;
+    const egCls=c.egress<50?'egress-good':c.egress>400?'egress-bad':'num';
+    return`<tr class="${!isV?'dim-row':''} ${isB?'best-row':''}"><td><div class="pname-row"><div class="pname-color" style="background:${p.color}"></div><div><div class="pname-main">${p.name}${p.green?' ♻':''}</div><div class="pname-sub">${p.full}</div></div></div></td><td class="num">€${fmt(c.compute)}</td><td class="num">€${fmt(c.storage)}</td><td class="${egCls}">€${fmt(c.egress)}${c.egress<50?' ⚡':''}</td><td class="tco">€${fmt(tco)}</td><td style="font-size:16px">${p.lockIn}</td><td class="margin-td">${mg>0?'€'+fmt(mg):'<span style="color:#9ca3b0;font-size:11px;font-weight:400">— usa il cursore</span>'}</td></tr>`;
+  }).join('');
+}
+function renderRanking(){
+  const s=bySorted();
+  document.getElementById('rankList').innerHTML=s.map((p,i)=>{
+    const isV=vis(p),isB=isV&&i===0;
+    return`<div class="rank-item ${!isV?'dim':''}"><div class="rank-num ${isB?'first':''}">${i+1}</div><div class="rank-dot" style="background:${p.color}"></div><div class="rank-name">${p.name}</div><div class="rank-price ${isB?'best':''}">€${fmt(getTCO(p))}</div></div>`;
+  }).join('');
+}
+function updateStats(){
+  const vp=PROVIDERS.filter(vis);if(!vp.length)return;
+  const tcos=vp.map(getTCO),mn=Math.min(...tcos),mx=Math.max(...tcos);
+  const bp=vp.find(p=>getTCO(p)===mn);
+  const avg=tcos.reduce((a,b)=>a+b,0)/tcos.length;
+  document.getElementById('sBest').textContent='€'+fmt(mn);
+  document.getElementById('sBestName').textContent=bp?bp.name:'';
+  document.getElementById('sWorst').textContent='€'+fmt(mx);
+  document.getElementById('sSaving').textContent='€'+fmt(mx-mn);
+  document.getElementById('sMargin').textContent=st.margin>0?'€'+fmt(Math.round(avg*st.margin/100)):'€0';
+}
+function updateBadge(){
+  document.getElementById('wbDisplay').innerHTML=`<span class="wb ${WB_CLS[st.workload]}">${WL_LABELS[st.workload]}</span>`;
+  document.getElementById('modeLabel').textContent=WL_LABELS[st.workload];
+  document.getElementById('wlHint').textContent=WL_HINTS[st.workload];
+}
+function render(){updateChart();renderGrid();renderTable();renderRanking();updateStats();updateBadge();}
+document.getElementById('workloadSel').addEventListener('change',e=>{st.workload=e.target.value;render();});
+document.getElementById('marginSlider').addEventListener('input',e=>{st.margin=+e.target.value;document.getElementById('marginNum').innerHTML=`${st.margin}<span>%</span>`;renderGrid();renderTable();updateStats();});
+document.getElementById('greenToggle').addEventListener('click',()=>{const cb=document.getElementById('greenCb');cb.checked=!cb.checked;st.greenOnly=cb.checked;document.getElementById('greenToggle').classList.toggle('on',cb.checked);render();});
+document.addEventListener('DOMContentLoaded',()=>{buildChart();renderGrid();renderTable();renderRanking();updateStats();updateBadge();});
+</script>
+</body>
+</html>

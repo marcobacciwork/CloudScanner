@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudScanner — Programmi Partnership</title>
+<meta name="description" content="CloudScanner — Programmi Partnership. Strumento gratuito per consulenti IT.">
+<link rel="canonical" href="https://marcobacciwork.github.io/CloudScanner/partnerships.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white: #ffffff;
+  --bg: #f7f8fa;
+  --bg2: #eef0f4;
+  --border: #e2e6ed;
+  --border2: #cdd3dc;
+  --text: #1a1f2e;
+  --text2: #5a6275;
+  --text3: #9ca3b0;
+  --blue: #2563eb;
+  --blue-light: #eff4ff;
+  --blue-mid: #dbeafe;
+  --green: #16a34a;
+  --green-light: #f0fdf4;
+  --green-mid: #bbf7d0;
+  --amber: #d97706;
+  --amber-light: #fffbeb;
+  --purple: #7c3aed;
+  --purple-light: #f5f3ff;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.04);
+  --font: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; -webkit-font-smoothing: antialiased; }
+
+/* HEADER */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo-icon { width: 36px; height: 36px; background: var(--blue); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; flex-shrink: 0; }
+.logo-text { font-size: 17px; font-weight: 700; letter-spacing: -.3px; }
+.logo-sub { font-size: 12px; color: var(--text3); }
+.nav-links { margin-left: auto; display: flex; gap: 6px; }
+.nav-link { font-size: 13px; font-weight: 600; color: var(--text2); padding: 7px 14px; border-radius: var(--radius-sm); text-decoration: none; transition: background .15s, color .15s; }
+.nav-link:hover { background: var(--bg2); color: var(--text); }
+.nav-link.active { background: var(--blue-light); color: var(--blue); }
+.update-badge { font-size: 11px; background: var(--green-light); color: var(--green); border: 1px solid var(--green-mid); padding: 3px 10px; border-radius: 20px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+
+/* HERO */
+.hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 32px 32px;
+}
+.hero-inner { max-width: 1100px; margin: 0 auto; }
+.hero h1 { font-size: 28px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 8px; }
+.hero p { font-size: 15px; color: var(--text2); line-height: 1.6; max-width: 600px; margin-bottom: 16px; }
+.hero-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hmeta { font-size: 12px; color: var(--text3); background: var(--bg); border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 5px; }
+.hmeta strong { color: var(--text2); }
+
+/* MAIN */
+.main { max-width: 1100px; margin: 0 auto; padding: 32px 32px 60px; display: flex; flex-direction: column; gap: 40px; }
+
+/* PROVIDER SECTION */
+.provider-section { display: flex; flex-direction: column; gap: 0; }
+
+.provider-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: 2px solid;
+}
+.ph-dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+.ph-name { font-size: 18px; font-weight: 700; }
+.ph-full { font-size: 13px; color: var(--text3); }
+.ph-tags { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.ph-tag { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; border: 1px solid; }
+.ph-source { font-size: 11px; color: var(--text3); text-decoration: none; display: flex; align-items: center; gap: 4px; border: 1px solid var(--border); padding: 4px 10px; border-radius: 20px; transition: border-color .15s, color .15s; }
+.ph-source:hover { border-color: var(--blue); color: var(--blue); }
+
+/* TIERS GRID */
+.tiers-grid {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.tier-card {
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.tier-card:last-child { border-bottom: none; }
+.tier-card:hover { background: var(--bg); }
+
+.tier-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+
+.tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tier-name { font-size: 15px; font-weight: 700; }
+.tier-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.tier-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+@media (max-width: 700px) { .tier-details { grid-template-columns: 1fr; } }
+
+.td-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; }
+.td-label { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); margin-bottom: 5px; }
+.td-items { display: flex; flex-direction: column; gap: 3px; }
+.td-item { font-size: 12px; color: var(--text2); display: flex; align-items: flex-start; gap: 6px; line-height: 1.4; }
+.td-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+.td-item.req::before { content: '→'; color: var(--amber); }
+
+.note-box { margin-top: 10px; background: var(--amber-light); border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 9px 12px; font-size: 12px; color: #92400e; line-height: 1.5; }
+.note-box strong { color: #78350f; }
+
+/* Legend */
+.legend { display: flex; gap: 16px; align-items: center; padding: 16px 22px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); flex-wrap: wrap; }
+.legend-title { font-size: 12px; font-weight: 700; color: var(--text3); letter-spacing: .05em; text-transform: uppercase; }
+.leg-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* Disclaimer */
+.disclaimer {
+  background: var(--white);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.disclaimer strong { color: var(--text); }
+.disclaimer a { color: var(--blue); text-decoration: none; }
+.disclaimer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-icon">☁</div>
+  <div>
+    <div class="logo-text">CloudScanner</div>
+    <div class="logo-sub">Programmi di partnership ufficiali</div>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="dashboard.html" class="nav-link">📊 Confronto Costi</a>
+    <a href="partnerships.html" class="nav-link active">🤝 Partnership</a>
+  </nav>
+  <div class="update-badge">🟢 Dati verificati — Marzo 2026</div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Programmi di Partnership dei Cloud Provider</h1>
+    <p>Tutti i livelli, i requisiti e i benefici ufficiali dei programmi partner dei principali cloud provider. Dati verificati direttamente dai siti ufficiali.</p>
+    <div class="hero-meta">
+      <div class="hmeta">📋 <strong>8 provider</strong> coperti</div>
+      <div class="hmeta">✅ Solo fonti ufficiali</div>
+      <div class="hmeta">⚠️ Gli sconti commerciali esatti sono riservati e non pubblici</div>
+      <div class="hmeta">🔄 Aggiornato manualmente — ultima verifica Marzo 2026</div>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- LEGENDA -->
+  <div class="legend">
+    <span class="legend-title">Livelli tipici:</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#6b7280"></span>Registrato / Base</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#2563eb"></span>Select / Standard</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#7c3aed"></span>Advanced / Gold</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#d97706"></span>Premier / Elite</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#16a34a"></span>Livello massimo / Strategico</span>
+  </div>
+
+  <!-- AWS -->
+  <div class="provider-section" id="aws">
+    <div class="provider-header" style="border-color:#FF9900">
+      <div class="ph-dot" style="background:#FF9900"></div>
+      <div>
+        <div class="ph-name" style="color:#FF9900">AWS</div>
+        <div class="ph-full">Amazon Web Services — AWS Partner Network (APN)</div>
+      </div>
+      <div class="ph-tags">
+        <span class="ph-tag" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">3 livelli Services Path</span>
+        <a href="https://aws.amazon.com/partners/services-tiers/" target="_blank" class="ph-source">🔗 Fonte ufficiale ↗</a>
+      </div>
+    </div>
+    <div class="tiers-grid">
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">⬜ SELECT</span>
+          <div>
+            <div class="tier-name">AWS Select Tier</div>
+            <div class="tier-desc">Primo livello ufficiale. Partner con individui certificati e prime esperienze cliente documentate.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Fee annuale: $2.500/anno</div>
+              <div class="td-item req">4 individui accreditati (2 tecnici + 2 business)</div>
+              <div class="td-item req">2 certificazioni AWS Foundation</div>
+              <div class="td-item req">2 certificazioni AWS Technical</div>
+              <div class="td-item req">3 opportunità lanciate (MRR ≥ $1.500)</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici commerciali</div>
+            <div class="td-items">
+              <div class="td-item">Badge ufficiale AWS Select Partner</div>
+              <div class="td-item">Listing su AWS Partner Solutions Finder</div>
+              <div class="td-item">Accesso al programma ACE (co-sell)</div>
+              <div class="td-item">AWS Promotional Credits per sviluppo</div>
+              <div class="td-item">Funding POA per PoC e migrazioni</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Risorse & formazione</div>
+            <div class="td-items">
+              <div class="td-item">Accesso ad AWS Partner Central</div>
+              <div class="td-item">Training e accreditamenti online</div>
+              <div class="td-item">Marketing Central (campagne co-branded)</div>
+              <div class="td-item">Accesso al Distribution Program</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#7c3aed;border-color:#c4b5fd;background:#f5f3ff">🟣 ADVANCED</span>
+          <div>
+            <div class="tier-name">AWS Advanced Tier</div>
+            <div class="tier-desc">Partner con un team tecnico strutturato e comprovata esperienza cliente su scala.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Fee annuale: $2.500/anno</div>
+              <div class="td-item req">8 individui accreditati (4 tecnici + 4 business)</div>
+              <div class="td-item req">4 certificazioni AWS Foundation</div>
+              <div class="td-item req">6 cert. Technical (min. 3 Professional/Specialty)</div>
+              <div class="td-item req">20 opportunità (MRR ≥ $10.000)</div>
+              <div class="td-item req">Business Plan con AWS</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici commerciali</div>
+            <div class="td-items">
+              <div class="td-item">Tutto il livello Select, più:</div>
+              <div class="td-item">Marketing Development Funds (MDF) — cash</div>
+              <div class="td-item">Case study co-branded su AWS Success Stories</div>
+              <div class="td-item">Post sul blog APN ufficiale</div>
+              <div class="td-item">Listing su AWS Solutions webpages</div>
+              <div class="td-item">Accesso al programma AWS MSP</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Risorse & formazione</div>
+            <div class="td-items">
+              <div class="td-item">Accesso a programmi AWS Competency</div>
+              <div class="td-item">AWS Well-Architected Partner Program</div>
+              <div class="td-item">APN Immersion Days</div>
+              <div class="td-item">Supporto co-sell con team AWS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#d97706;border-color:#fcd34d;background:#fffbeb">🥇 PREMIER</span>
+          <div>
+            <div class="tier-name">AWS Premier Tier</div>
+            <div class="tier-desc">Il livello più alto. Partner leader nel proprio mercato con expertise profonda e clienti enterprise su larga scala.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Fee annuale: $2.500/anno</div>
+              <div class="td-item req">20 individui accreditati (10 tecnici + 10 business)</div>
+              <div class="td-item req">10 certificazioni AWS Foundation</div>
+              <div class="td-item req">25 cert. Technical (min. 10 Professional/Specialty)</div>
+              <div class="td-item req">50 opportunità (MRR ≥ $50.000)</div>
+              <div class="td-item req">3 Competency/MSP/Well-Arch (incl. MSP o DevOps)</div>
+              <div class="td-item req">Executive Business Review con AWS</div>
+              <div class="td-item req">>6 mesi mantenimento dei criteri</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici commerciali</div>
+            <div class="td-items">
+              <div class="td-item">Tutto l'Advanced, più:</div>
+              <div class="td-item">Early access ai pacchetti sponsorship AWS Summit</div>
+              <div class="td-item">MDF potenziati + accesso prioritario</div>
+              <div class="td-item">Collaborazione diretta con AWS Sales</div>
+              <div class="td-item">Maggiore visibilità in AWS Marketplace</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Risorse & formazione</div>
+            <div class="td-items">
+              <div class="td-item">Partner Development Manager dedicato</div>
+              <div class="td-item">Accesso a programmi MSP avanzati</div>
+              <div class="td-item">Strategic Collaboration Agreement (SCA)</div>
+              <div class="td-item">Abilitazione AI/ML e Generative AI prioritaria</div>
+            </div>
+          </div>
+        </div>
+        <div class="note-box">
+          <strong>Nota sugli sconti:</strong> AWS offre incentivi attraverso il Solution Provider Program (SPP) e il Distribution Program, con una struttura che include Base Benefit, New Customer Incentive e Partner Growth Incentive. Le percentuali esatte non sono pubbliche e variano per volume e accordi individuali. Per dettagli: accedi a <strong>AWS Partner Central</strong>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AZURE -->
+  <div class="provider-section" id="azure">
+    <div class="provider-header" style="border-color:#0078D4">
+      <div class="ph-dot" style="background:#0078D4"></div>
+      <div>
+        <div class="ph-name" style="color:#0078D4">Microsoft Azure</div>
+        <div class="ph-full">Microsoft AI Cloud Partner Program — Solutions Partner Designations</div>
+      </div>
+      <div class="ph-tags">
+        <span class="ph-tag" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">6 designazioni + specializzazioni</span>
+        <a href="https://learn.microsoft.com/en-us/partner-center/membership/introduction-to-pcs" target="_blank" class="ph-source">🔗 Fonte ufficiale ↗</a>
+      </div>
+    </div>
+    <div class="tiers-grid">
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">⬜ CORE</span>
+          <div>
+            <div class="tier-name">Partner Success Core Benefits</div>
+            <div class="tier-desc">Pacchetto base per partner che vogliono accedere alle risorse Microsoft senza ancora una designazione Solutions Partner.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Fee annuale: $925 USD</div>
+              <div class="td-item req">Account verificato su Microsoft Partner Center</div>
+              <div class="td-item req">Accordo Microsoft AI Cloud Partner Program</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici inclusi</div>
+            <div class="td-items">
+              <div class="td-item">Azure credits mensili per sviluppo e test</div>
+              <div class="td-item">Licenze software Microsoft per uso interno</div>
+              <div class="td-item">Microsoft 365, Dynamics 365 (uso interno)</div>
+              <div class="td-item">Accesso a GitHub Copilot (aggiunto 2025)</div>
+              <div class="td-item">Supporto tecnico di base</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Risorse formazione</div>
+            <div class="td-items">
+              <div class="td-item">Microsoft Learn percorsi partner</div>
+              <div class="td-item">Voucher per esami di certificazione</div>
+              <div class="td-item">Accesso a Microsoft Partner Center</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#2563eb;border-color:#93c5fd;background:#eff4ff">🔵 SOLUTIONS PARTNER</span>
+          <div>
+            <div class="tier-name">Solutions Partner Designation (6 aree)</div>
+            <div class="tier-desc">Il riconoscimento principale Microsoft. 6 designazioni: Infrastructure, Data & AI, Digital & App Innovation, Modern Work, Security, Business Applications. Basate su un "Partner Capability Score" (Performance + Skilling + Customer Success).</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti (per area)</div>
+            <div class="td-items">
+              <div class="td-item req">Partner Capability Score minimo per area</div>
+              <div class="td-item req">Performance: crescita fatturato Azure</div>
+              <div class="td-item req">Skilling: certificazioni del team</div>
+              <div class="td-item req">Customer Success: adozione e deployment clienti</div>
+              <div class="td-item req">Acquisto pacchetto Solutions Partner benefits</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici commerciali</div>
+            <div class="td-items">
+              <div class="td-item">Badge Solutions Partner visibile ai clienti</div>
+              <div class="td-item">Accesso a opportunità co-sell con Microsoft Sales</div>
+              <div class="td-item">Listing su Microsoft AppSource / Partner Directory</div>
+              <div class="td-item">Azure credits potenziati (Expanded Benefits)</div>
+              <div class="td-item">Incentivi CSP (Cloud Solution Provider)</div>
+              <div class="td-item">Microsoft 365 Copilot (aggiunto gen. 2025)</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Risorse & supporto</div>
+            <div class="td-items">
+              <div class="td-item">Fino a 50 ticket supporto cloud/anno</div>
+              <div class="td-item">Presales e deployment services</div>
+              <div class="td-item">Accesso a AI Foundry e Azure OpenAI</div>
+              <div class="td-item">GitHub Enterprise per il team</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#d97706;border-color:#fcd34d;background:#fffbeb">🏆 SPECIALIZATION / EXPERT MSP</span>
+          <div>
+            <div class="tier-name">Specializzazioni & Azure Expert MSP</div>
+            <div class="tier-desc">Il livello più alto. Specializzazioni verticali (es. Analytics su Azure, Cloud Security, SAP...) o il riconoscimento Azure Expert MSP per i managed service provider più avanzati.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Designazione Solutions Partner nell'area allineata</div>
+              <div class="td-item req">Requisiti specifici di Performance e Skilling avanzati</div>
+              <div class="td-item req">Audit o customer reference ogni 2 anni</div>
+              <div class="td-item req">Per Azure Expert MSP: audit indipendente annuale</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici aggiuntivi</div>
+            <div class="td-items">
+              <div class="td-item">Badge Specialization customer-facing</div>
+              <div class="td-item">Benefici incrementali sopra Solutions Partner</div>
+              <div class="td-item">MDF aggiuntivi (es. $25.000 per AI Competency)</div>
+              <div class="td-item">Priorità nei referral da Microsoft Sales</div>
+              <div class="td-item">Visibilità premium su Azure Marketplace</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Valore stimato pacchetto</div>
+            <div class="td-items">
+              <div class="td-item">Core: valore ~$126.000 anno (stimato)</div>
+              <div class="td-item">Expanded: ~$151.000 anno (stimato)</div>
+              <div class="td-item">Advanced: ~$176.000 anno (stimato)</div>
+            </div>
+          </div>
+        </div>
+        <div class="note-box">
+          <strong>Nota sugli sconti CSP:</strong> Gli incentivi Microsoft per rivendita (rebate, co-op) variano per designazione e area. Per Azure CSP è richiesta una designazione Azure. I valori esatti si trovano nel <strong>Microsoft AI Cloud Partner Program Benefits Guide</strong> su Partner Center (accesso riservato ai partner).
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GOOGLE CLOUD -->
+  <div class="provider-section" id="gcp">
+    <div class="provider-header" style="border-color:#4285F4">
+      <div class="ph-dot" style="background:#4285F4"></div>
+      <div>
+        <div class="ph-name" style="color:#4285F4">Google Cloud</div>
+        <div class="ph-full">Google Cloud Partner Network (nuovo programma — lancio ufficiale Q1 2026)</div>
+      </div>
+      <div class="ph-tags">
+        <span class="ph-tag" style="color:#2563eb;border-color:#93c5fd;background:#eff4ff">⚠️ Nuovo programma 2026</span>
+        <a href="https://cloud.google.com/blog/topics/partners/introducing-google-cloud-partner-network" target="_blank" class="ph-source">🔗 Fonte ufficiale ↗</a>
+      </div>
+    </div>
+    <div class="tiers-grid">
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">⬜ SELECT</span>
+          <div>
+            <div class="tier-name">Select Partner</div>
+            <div class="tier-desc">Livello base del nuovo Google Cloud Partner Network, lanciato ufficialmente nel Q1 2026. Sostituisce il precedente Partner Advantage.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Registrazione a Google Cloud Partner Network</div>
+              <div class="td-item req">Scelta del percorso (co-sell, services, technology)</div>
+              <div class="td-item req">Metriche basate su outcome clienti reali</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici</div>
+            <div class="td-items">
+              <div class="td-item">Accesso al partner portal Google Cloud</div>
+              <div class="td-item">Risorse di training e certificazione</div>
+              <div class="td-item">Listing base nel Partner Directory</div>
+              <div class="td-item">Accesso ai programmi Google Cloud Marketplace</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Caratteristiche chiave</div>
+            <div class="td-items">
+              <div class="td-item">Tracking automatico con AI dei progressi</div>
+              <div class="td-item">Dashboard real-time visibilità pipeline</div>
+              <div class="td-item">3 percorsi: co-sell, services, technology</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#7c3aed;border-color:#c4b5fd;background:#f5f3ff">🟣 PREMIER</span>
+          <div>
+            <div class="tier-name">Premier Partner</div>
+            <div class="tier-desc">Livello intermedio per partner con dimostrato successo sui clienti e expertise tecnica validata.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Successi documentati con clienti (co-sell, servizi)</div>
+              <div class="td-item req">Certificazioni tecniche del team</div>
+              <div class="td-item req">Customer Success Stories validate</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici</div>
+            <div class="td-items">
+              <div class="td-item">Badge Premier visibile ai clienti</div>
+              <div class="td-item">Co-sell con team Google Cloud Sales</div>
+              <div class="td-item">Google Cloud Marketplace — posizione migliorata</div>
+              <div class="td-item">MDF (Marketing Development Funds)</div>
+              <div class="td-item">Google Cloud Credits per sviluppo</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Risorse</div>
+            <div class="td-items">
+              <div class="td-item">Supporto pre-sales dedicato</div>
+              <div class="td-item">Accesso agli specialisti Google Cloud</div>
+              <div class="td-item">Programmi joint go-to-market</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#16a34a;border-color:#86efac;background:#f0fdf4">💎 DIAMOND</span>
+          <div>
+            <div class="tier-name">Diamond Partner</div>
+            <div class="tier-desc">Livello massimo del nuovo programma, basato su competenze settoriali validate e volume di successi clienti su larga scala.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Volume significativo di customer outcomes</div>
+              <div class="td-item req">Competencies validate (AI, Security, Data…)</div>
+              <div class="td-item req">Track record co-sell + innovazione con Google</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici</div>
+            <div class="td-items">
+              <div class="td-item">Massima visibilità in Google Cloud Marketplace</div>
+              <div class="td-item">Accesso prioritario a nuovi prodotti Google</div>
+              <div class="td-item">MDF massimi + Joint Business Plan</div>
+              <div class="td-item">Partner manager dedicato Google</div>
+              <div class="td-item">Co-marketing e PR congiunti</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Opportunità economica</div>
+            <div class="td-items">
+              <div class="td-item">IDC stima: $7,54 ricavi partner ogni $1 GCP venduto</div>
+              <div class="td-item">Revenue share via Marketplace Channel Private Offers</div>
+              <div class="td-item">100% commit drawdown su MCPO da giugno 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="note-box">
+          <strong>Programma in transizione:</strong> Google Cloud ha lanciato il nuovo Google Cloud Partner Network in Q1 2026, con 6 mesi di finestra di transizione per i partner esistenti. Il programma precedente (Partner Advantage) è stato sostituito. Verifica i requisiti aggiornati su <strong>partners.cloud.google.com</strong>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OVHcloud -->
+  <div class="provider-section" id="ovh">
+    <div class="provider-header" style="border-color:#123F6D">
+      <div class="ph-dot" style="background:#123F6D"></div>
+      <div>
+        <div class="ph-name" style="color:#123F6D">OVHcloud</div>
+        <div class="ph-full">OVHcloud Partner Program — General Path (MSP/VAR/SI)</div>
+      </div>
+      <div class="ph-tags">
+        <span class="ph-tag" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">4 livelli General Path</span>
+        <a href="https://partner.ovhcloud.com/en/partner-benefits/" target="_blank" class="ph-source">🔗 Fonte ufficiale ↗</a>
+      </div>
+    </div>
+    <div class="tiers-grid">
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">⬜ STANDARD</span>
+          <div>
+            <div class="tier-name">Standard Partner</div>
+            <div class="tier-desc">Punto d'ingresso del programma. Accesso alle risorse di base e all'ecosistema OVHcloud.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Accordo di partnership non-esclusivo</div>
+              <div class="td-item req">Supporto Premium minimo sottoscritto</div>
+              <div class="td-item req">Forecast vendite minimo: €500/mese</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici</div>
+            <div class="td-items">
+              <div class="td-item">Newsletter partner OVHcloud</div>
+              <div class="td-item">Accesso gratuito ai webinar partner</div>
+              <div class="td-item">Accesso al Partner Portal</div>
+              <div class="td-item">Badge OVHcloud sul sito del partner</div>
+              <div class="td-item">Listing nel Partner Directory</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Formazione</div>
+            <div class="td-items">
+              <div class="td-item">Corsi OVHcloud Partner Academy online</div>
+              <div class="td-item">Accesso al Training Portal</div>
+              <div class="td-item">Certificazioni OVHcloud livello Discover</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#2563eb;border-color:#93c5fd;background:#eff4ff">🔵 ADVANCED</span>
+          <div>
+            <div class="tier-name">Advanced Partner</div>
+            <div class="tier-desc">Partner con team certificato e fatturato minimo su OVHcloud. Accesso a supporto dedicato e risorse marketing.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Accordo di partnership non-esclusivo</div>
+              <div class="td-item req">Supporto Premium for Advanced Partner</div>
+              <div class="td-item req">5 certificazioni OVHcloud attive</div>
+              <div class="td-item req">MRR minimo: €5.000/mese</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici aggiuntivi</div>
+            <div class="td-items">
+              <div class="td-item">Tutto lo Standard, più:</div>
+              <div class="td-item">Posizione boostata nel Partner Directory</div>
+              <div class="td-item">Listing per competenza verticale</div>
+              <div class="td-item">Joint Case Studies con OVHcloud</div>
+              <div class="td-item">Marketing Development Funds (MDF)</div>
+              <div class="td-item">Supporto sales dedicato con target annuale</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Formazione avanzata</div>
+            <div class="td-items">
+              <div class="td-item">OVHcloud Partner Academy periodica</div>
+              <div class="td-item">Formazione per sales, pre-sales, support, architect</div>
+              <div class="td-item">Certificazioni livello Associate e Master</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#d97706;border-color:#fcd34d;background:#fffbeb">🥇 ELITE</span>
+          <div>
+            <div class="tier-name">Elite Partner</div>
+            <div class="tier-desc">Partner ad alto volume con team tecnico qualificato e forte presenza nel mercato cloud europeo.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti (indicativi)</div>
+            <div class="td-items">
+              <div class="td-item req">MRR significativo (superiore all'Advanced)</div>
+              <div class="td-item req">Team con certificazioni Specialist</div>
+              <div class="td-item req">Track record clienti documentato</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici</div>
+            <div class="td-items">
+              <div class="td-item">Tutto l'Advanced, plus:</div>
+              <div class="td-item">Supporto locale personalizzato per area geografica</div>
+              <div class="td-item">Iniziative dedicate sales e marketing</div>
+              <div class="td-item">Visibilità prioritaria nel Partner Directory</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Punti di forza OVHcloud</div>
+            <div class="td-items">
+              <div class="td-item">Standard aperti — zero vendor lock-in</div>
+              <div class="td-item">Data center in Europa, GDPR-compliant</div>
+              <div class="td-item">Partnership VMware (Pinnacle) + Nutanix Champion</div>
+              <div class="td-item">Sovranità digitale europea — leva ESG</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#16a34a;border-color:#86efac;background:#f0fdf4">💎 STRATEGIC</span>
+          <div>
+            <div class="tier-name">Strategic Partner</div>
+            <div class="tier-desc">Il livello massimo del General Path. Partner strategici per OVHcloud con collaborazione bidirezionale profonda.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Benefici chiave</div>
+            <div class="td-items">
+              <div class="td-item">Supporto proattivo da team sales, tecnico e marketing</div>
+              <div class="td-item">Vantaggio competitivo sostenibile nel mercato</div>
+              <div class="td-item">Accesso anticipato a nuovi prodotti OVHcloud</div>
+              <div class="td-item">Co-marketing ad alta visibilità</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Supporto disponibile</div>
+            <div class="td-items">
+              <div class="td-item">Premium: supporto custom personalizzato</div>
+              <div class="td-item">Business: 24/7 per incident management</div>
+              <div class="td-item">Enterprise: risorsa expert dedicata</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Sconti & pricing</div>
+            <div class="td-items">
+              <div class="td-item">Sconti esclusivi sul già competitivo listino OVHcloud</div>
+              <div class="td-item">Sconti crescenti per livello di partnership</div>
+              <div class="td-item">Dettagli su partner.ovhcloud.com (login richiesto)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIGITALOCEAN -->
+  <div class="provider-section" id="do">
+    <div class="provider-header" style="border-color:#0080FF">
+      <div class="ph-dot" style="background:#0080FF"></div>
+      <div>
+        <div class="ph-name" style="color:#0080FF">DigitalOcean</div>
+        <div class="ph-full">DigitalOcean AI Partner Program (Partner Pod) — lancio ottobre 2025</div>
+      </div>
+      <div class="ph-tags">
+        <span class="ph-tag" style="color:#2563eb;border-color:#93c5fd;background:#eff4ff">Aggiornato ott. 2025</span>
+        <a href="https://www.digitalocean.com/partners/services" target="_blank" class="ph-source">🔗 Fonte ufficiale ↗</a>
+      </div>
+    </div>
+    <div class="tiers-grid">
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#6b7280;border-color:#e2e6ed;background:#f7f8fa">⬜ REGISTERED</span>
+          <div>
+            <div class="tier-name">Registered Partner</div>
+            <div class="tier-desc">Punto d'ingresso gratuito. Ideale per iniziare a guadagnare referral fee subito senza requisiti complessi.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Requisiti</div>
+            <div class="td-items">
+              <div class="td-item req">Registrazione gratuita al Partner Pod</div>
+              <div class="td-item req">Breve application online</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici</div>
+            <div class="td-items">
+              <div class="td-item">Fino al 15% di referral fee sui qualified referral</div>
+              <div class="td-item">Accesso al Partner Experience Portal (PxP)</div>
+              <div class="td-item">Training e materiali di enablement gratuiti</div>
+              <div class="td-item">Listing nel Partner Directory</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Percorsi disponibili</div>
+            <div class="td-items">
+              <div class="td-item">Advisory: consulenti e agenzie</div>
+              <div class="td-item">Business: MSP, reseller, hosting provider</div>
+              <div class="td-item">Technology: ISV, sviluppatori piattaforma</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#2563eb;border-color:#93c5fd;background:#eff4ff">🔵 SERVICES PARTNER</span>
+          <div>
+            <div class="tier-name">Services / Solutions Partner</div>
+            <div class="tier-desc">Partner attivi che vendono e gestiscono infrastruttura DigitalOcean per i clienti, con sconti sulla rivendita.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Benefici economici (ufficiali)</div>
+            <div class="td-items">
+              <div class="td-item">Fino al <strong>25% di sconto</strong> per reseller su servizi idonei</div>
+              <div class="td-item">Fino al 15% referral fee per qualified referral</div>
+              <div class="td-item">PSF: fino al 20% del consumo annuo per migrazioni</div>
+              <div class="td-item">Fino a $1.000 per assessment infrastrutturali</div>
+              <div class="td-item">Fino a $5.000 per PoC qualificati</div>
+              <div class="td-item">MDF (Market Development Funds) per campagne GTM</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Supporto commerciale</div>
+            <div class="td-items">
+              <div class="td-item">Support tecnico prioritario per partner</div>
+              <div class="td-item">Accesso a webinar, AMA e office hours con product team</div>
+              <div class="td-item">Go-to-market guide e use-case enablement</div>
+              <div class="td-item">Supporto migrazione da esperti DigitalOcean</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Perché sceglierlo</div>
+            <div class="td-items">
+              <div class="td-item">Pricing trasparente e prevedibile</div>
+              <div class="td-item">Egress quasi gratuito (1 TB incluso)</div>
+              <div class="td-item">Nessun vendor lock-in — open standard</div>
+              <div class="td-item">640.000+ clienti attivi raggiungibili</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-top">
+          <span class="tier-badge" style="color:#16a34a;border-color:#86efac;background:#f0fdf4">🤖 AI PARTNER PROGRAM</span>
+          <div>
+            <div class="tier-name">DigitalOcean AI Partner Program (ottobre 2025)</div>
+            <div class="tier-desc">Programma rinnovato focalizzato sull'AI. Include tracce dedicate per AI Startup, Technology Platforms e Systems Integrators.</div>
+          </div>
+        </div>
+        <div class="tier-details">
+          <div class="td-box">
+            <div class="td-label">Tracce disponibili</div>
+            <div class="td-items">
+              <div class="td-item">AI Startups & Natives: credits + supporto product dedicato</div>
+              <div class="td-item">Technology Platforms: integrazione profonda + co-marketing</div>
+              <div class="td-item">Systems Integrators: joint product dev + market access</div>
+              <div class="td-item">Venture Firms: servizi AI personalizzati</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Benefici marketing unici</div>
+            <div class="td-items">
+              <div class="td-item">Accesso al developer marketing engine (3M+ dev)</div>
+              <div class="td-item">Hacktoberfest: 90.000+ partecipanti/anno</div>
+              <div class="td-item">Joint video, tutorial, contenuti social</div>
+              <div class="td-item">Hundreds of events DO annuali (community + partner)</div>
+            </div>
+          </div>
+          <div class="td-box">
+            <div class="td-label">Infrastruttura AI</div>
+            <div class="td-items">
+              <div class="td-item">Gradient™ AI Agentic Cloud</div>
+              <div class="td-item">GPU AMD e NVIDIA ad alte prestazioni</div>
+              <div class="td-item">Accesso modelli OpenAI, DeepSeek, Meta, ecc.</div>
+              <div class="td-item">GPU Reseller Program con deal protection</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <strong>⚠️ Nota importante sui dati:</strong> Tutte le informazioni presenti in questa pagina sono state raccolte direttamente dalle fonti ufficiali dei provider (siti web ufficiali, documentazione pubblica, blog ufficiali) e verificate a <strong>marzo 2026</strong>. I programmi di partnership vengono aggiornati frequentemente — si consiglia di verificare sempre le condizioni attuali sui siti ufficiali collegati. <strong>Gli sconti commerciali esatti sulla rivendita non sono generalmente pubblici</strong> e vengono negoziati direttamente con ogni provider in base al volume, alla tipologia di cliente e agli accordi individuali. Per Oracle Cloud (OCI), IBM Cloud e Alibaba Cloud, i programmi partner non sono stati inclusi in questa pagina perché le informazioni pubbliche disponibili sono insufficienti per una presentazione accurata — si consiglia di contattare direttamente i team partner di ciascun provider.
+    <br><br>
+    Fonti principali:
+    <a href="https://aws.amazon.com/partners/services-tiers/" target="_blank">AWS ↗</a> ·
+    <a href="https://learn.microsoft.com/en-us/partner-center/membership/introduction-to-pcs" target="_blank">Microsoft ↗</a> ·
+    <a href="https://cloud.google.com/blog/topics/partners/introducing-google-cloud-partner-network" target="_blank">Google Cloud ↗</a> ·
+    <a href="https://partner.ovhcloud.com/en/partner-benefits/" target="_blank">OVHcloud ↗</a> ·
+    <a href="https://www.digitalocean.com/partners/services" target="_blank">DigitalOcean ↗</a>
+  </div>
+
+</main>
+</body>
+</html>
